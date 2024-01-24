@@ -37,10 +37,8 @@ def game():
                 used_letters.add(user_char)
             elif user_char in word and user_char not in misplaced_letters:
                 misplaced_letters.append(user_char)
-                print(misplaced_letters)
             elif user_char not in word and user_char not in incorrect_letters:
                 incorrect_letters.append(user_char)
-                print(incorrect_letters)
 
         feedback_word = display_word(word, used_letters)
 
@@ -49,32 +47,16 @@ def game():
             print("Incorrect letters: {}".format(' '.join(incorrect_letters)))
         if misplaced_letters:
             print("Correct letters in wrong place: {}".format(' '.join(misplaced_letters)))
+
+        if user_word == word:
+            print("Congratulations you guessed the word: {}".format(word))
+            break
         
         lives -= 1
+    
+    if lives <= 0:
+        print("Sorry you're out of lives. The word is {}".format(word))
         
-
-    
-    
-# need to compare the user letter to the computer letter in their words respectively
-    # for any of the positions in the in the word 
-    #if the user letter and the computer letter matches:
-        #reveal the letter and the rest of the unguessed word e.g. S - - -
-    #if the user letter is in the computer word but in the wrong place:
-        #append user letter to misplaced_letters
-        #print misplaced_letters and the computer word so far
-        #lives -= 1
-    # if the letter is not in the computer word:
-        #append the letter to incorrect_letters
-        #print incorrect_letters and the computer word so far
-        #lives -= 1
-    
-#need to add the lives 
-#need to add how the game concludes, user guessed within 5 lives and wins or loses and the word is revealed
-    
-
-        
-        
-    
-
-game()
+if __name__ == "__main__":
+    game()
 
