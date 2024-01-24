@@ -15,21 +15,30 @@ from words_file import words
 
 def get_valid_word(words):
     word = random.choice(words)
-    return word.upper()
+    return word.lower()
+
+def display_word(word, used_letters):
+    return " ".join([letter if letter in used_letters else '-' for letter in word])
 
 def game():
-    lives = 6
+    lives = 5
     word = get_valid_word(words)
     used_letters = set()
-    incorrect_letters = ""
-    misplaced_letters = ""
+    incorrect_letters = []
+    misplaced_letters = []
 
-    word_list = [letter if letter in used_letters else '-' for letter in word]
-    print("Word: ", " ".join(word_list))
-
-    user_word = input("Enter a word: ").upper()
-    #need to break the word into letters to assess it/ compare later down the line function 
-    print(user_word)
+    user_word = input("Lives remaining: {}. Enter a word: ".format(lives)).lower()
+    
+    for user_char, comp_char in zip(user_word, word):
+        if user_char == comp_char:
+            used_letters.add(user_char)
+        elif user_char in word:
+            misplaced_letters.append(user_char)
+            print(misplaced_letters)
+        elif user_char not in word:
+            incorrect_letters.append(user_char)
+            print(incorrect_letters)
+    
     
 # need to compare the user letter to the computer letter in their words respectively
     # for any of the positions in the in the word 
@@ -47,8 +56,7 @@ def game():
 #need to add the lives 
 #need to add how the game concludes, user guessed within 5 lives and wins or loses and the word is revealed
     
-    
-    for letter in word:
+
         
         
     
