@@ -29,27 +29,30 @@ def game():
 
     print("word", display_word(word, used_letters))
 
-    user_word = input("Lives remaining: {}. Enter a word: ".format(lives)).lower()
-    
-    for user_char, comp_char in zip(user_word, word):
-        if user_char == comp_char:
-            used_letters.add(user_char)
-        elif user_char in word:
-            misplaced_letters.append(user_char)
-            print(misplaced_letters)
-        elif user_char not in word:
-            incorrect_letters.append(user_char)
-            print(incorrect_letters)
+    while lives > 0:
+        user_word = input("Lives remaining: {}. Enter a word: ".format(lives)).lower()
+        
+        for user_char, comp_char in zip(user_word, word):
+            if user_char == comp_char:
+                used_letters.add(user_char)
+            elif user_char in word and user_char not in misplaced_letters:
+                misplaced_letters.append(user_char)
+                print(misplaced_letters)
+            elif user_char not in word and user_char not in incorrect_letters:
+                incorrect_letters.append(user_char)
+                print(incorrect_letters)
 
-    feedback_word = display_word(word, used_letters)
+        feedback_word = display_word(word, used_letters)
 
-    print("Feedback {}".format(feedback_word))
-    if incorrect_letters:
-        print("Incorrect letters: {}".format(' '.join(incorrect_letters)))
-    if misplaced_letters:
-        print("Correct letters in wrong place: {}".format(' '.join(misplaced_letters)))
-    
-    
+        print("Feedback {}".format(feedback_word))
+        if incorrect_letters:
+            print("Incorrect letters: {}".format(' '.join(incorrect_letters)))
+        if misplaced_letters:
+            print("Correct letters in wrong place: {}".format(' '.join(misplaced_letters)))
+        
+        lives -= 1
+        
+
     
     
 # need to compare the user letter to the computer letter in their words respectively
