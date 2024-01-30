@@ -15,7 +15,7 @@ def game():
     incorrect_letters = []
     misplaced_letters = []
 
-    print("word", display_word(word, used_letters))
+    print("Word:", display_word(word, used_letters))
 
     while lives > 0:
         user_word = input("Lives remaining: {}. Enter a word: ".format(lives)).lower()
@@ -30,7 +30,7 @@ def game():
 
         feedback_word = display_word(word, used_letters)
 
-        print("Feedback {}".format(feedback_word))
+        print("Feedback: {}".format(feedback_word))
         if incorrect_letters:
             print("Incorrect letters: {}".format(' '.join(incorrect_letters)))
         if misplaced_letters:
